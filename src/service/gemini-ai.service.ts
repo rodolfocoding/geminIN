@@ -3,12 +3,14 @@ import {
   GenerateContentRequest,
 } from "@google/generative-ai";
 
-class GeminiAIService {
+export class GeminiAIService {
   async sendPrompt(prompt: string): Promise<string> {
     try {
       const genAI = new GoogleGenerativeAI(String(process.env.GEMINIAI_TOKEN));
 
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({
+        model: process.env.PROMPT_MODEL || "",
+      });
 
       const result = await model.generateContent(prompt);
 
@@ -25,5 +27,3 @@ class GeminiAIService {
     }
   }
 }
-
-export default new GeminiAIService();
