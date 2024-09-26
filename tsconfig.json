@@ -3,10 +3,17 @@
     "target": "es2016",
     "module": "commonjs",
     "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "@helpers/*": ["./helpers/*"],
+      "@entities/*": ["./entities/*"]
+    },
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false
   }
 }
