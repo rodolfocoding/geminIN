@@ -1,11 +1,16 @@
 import "dotenv/config";
 import express from "express";
-import routes from "./routes/index";
+import { PostRoutes } from "./routes/post.routes";
+import { PostController } from "./controller/post.controller";
+import { GeminiAIService } from "./service/gemini-ai.service";
 
 const app = express();
-
 app.use(express.json());
-app.use(routes);
+
+const postController = new PostController(new GeminiAIService());
+const postRoutes = new PostRoutes(postController);
+
+app.use(postRoutes.getRouter());
 
 const port = process.env.port;
 
